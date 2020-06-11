@@ -4,9 +4,12 @@
 #include <string.h>
 #include <stdio.h>
 
+int flag = 1;
 //handler which takes 3 parameters bcos we are using sa_sigaction
 static void hdl (int sig, siginfo_t *siginfo, void *context) {
-  printf("Sending PID: %ld, UID: %ld\n", (long)siginfo-> si_pid, (long)siginfo-> si_uid);
+  printf("Sending PID: %ld, UID: %ld\n",
+        (long)siginfo->si_pid, (long)siginfo->si_uid);
+  flag = 0;
 }
 
 int main(int argc, char* argv[]) {
@@ -25,7 +28,7 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  while(1)
+  while(flag)
     sleep(3);
     return 0;
 }
