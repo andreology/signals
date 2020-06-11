@@ -2,9 +2,10 @@
 #include <unistd.h>
 #include <signal.h>
 #include <string.h>
+#include <stdio.h>
 
 //handler which takes 3 parameters bcos we are using sa_sigaction
-static void hdl(int sig, siginfo_t *siginfo_t, void *context) {
+static void hdl (int sig, siginfo_t *siginfo, void *context) {
   printf("Sending PID: %ld, UID: %ld\n", (long)siginfo-> si_pid, (long)siginfo-> si_uid);
 }
 
